@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - 13
+
+services:
+  - docker
+
+before_install:
+  - echo "nothing needs to be installed"
+
+install:
+  - echo "nothing needs to be installed"
+
+before_script:
+  - echo "no tests"
+
+script:
+  - docker --version # print the version for logging
+  - docker build -t mongo-app .
+  - docker tag mongo-app annulus/mongo-app
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push annulus/mongo-app
