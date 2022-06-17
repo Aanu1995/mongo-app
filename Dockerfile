@@ -13,6 +13,9 @@ WORKDIR /home/app
 # will execute npm install in /home/app because of WORKDIR
 RUN npm install
 
+# Bind the port that the image will run on
+EXPOSE 3000
+
 # no need for /home/app/server.js because of WORKDIR
 CMD ["node", "server.js"]
 
